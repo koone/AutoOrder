@@ -24,7 +24,7 @@ public class HospitalServiceImpl implements HospitalService {
 	public Hospital getHosptial(Long id) {
 		
 		if (null != id) {
-			return hospitalMapper.queryHaspitalByID(id);
+			return hospitalMapper.queryHospitalByID(id);
 		}
 		
 		return null;

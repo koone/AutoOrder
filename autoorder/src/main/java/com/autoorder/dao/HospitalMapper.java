@@ -9,5 +9,5 @@ import com.autoorder.bo.Hospital;
  */
 public interface HospitalMapper {
 
-	public Hospital queryHaspitalByID(Long id);
+	public Hospital queryHospitalByID(Long id);
 }
