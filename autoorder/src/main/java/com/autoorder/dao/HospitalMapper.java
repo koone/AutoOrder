@@ -1,5 +1,9 @@
 package com.autoorder.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.autoorder.bo.Hospital;
 
 /**
@@ -10,4 +14,6 @@ import com.autoorder.bo.Hospital;
 public interface HospitalMapper {
 
 	public Hospital queryHospitalByID(Long id);
+	
+	public List<Hospital> queryHospitalByCondition(@Param("queryBean")Hospital queryBean);
 }

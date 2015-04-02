@@ -6,9 +6,37 @@
 		<result column="name" property="name" jdbcType="VARCHAR"/>
 		<result column="address" property="address" jdbcType="VARCHAR"/>
 		<result column="telphone" property="telphone" jdbcType="VARCHAR"/>
+		<result column="hospital_type" property="hospitalType" jdbcType="TINYINT"/>
+		<result column="hospital_rank" property="hospitalRank" jdbcType="TINYINT"/>
+		<result column="hospital_area" property="hospitalArea" jdbcType="TINYINT"/>
 	</resultMap>
 
 	<select id="queryHospitalByID" parameterType="long" resultMap="hospital">
 		select * from hospital h where h.id = #{id}
+	</select>
+	
+	<select id="queryHospitalByCondition" resultMap="hospital">
+		select * from hospital h where 1 = 1
+		<if test="queryBean.id != null">
+			and h.id = #{queryBean.id}
+		</if>
+		<if test="queryBean.name != null">
+			and h.name = #{queryBean.name}
+		</if>
+		<if test="queryBean.address != null">
+			and h.address = #{queryBean.address}
+		</if>
+		<if test="queryBean.telphone != null">
+			and h.telphone = #{queryBean.telphone}
+		</if>
+		<if test="queryBean.hospitalType != null">
+			and h.hospital_type = #{queryBean.hospitalType}
+		</if>
+		<if test="queryBean.hospitalRank != null">
+			and h.hospital_rank = #{queryBean.hospitalRank}
+		</if>
+		<if test="queryBean.hospitalArea != null">
+			and h.hospital_area = #{queryBean.hospitalArea}
+		</if>
 	</select>
 </mapper>

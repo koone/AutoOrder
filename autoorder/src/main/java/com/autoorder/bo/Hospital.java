@@ -14,6 +14,12 @@ public class Hospital {
 	private String address;
 	
 	private String telphone;
+	
+	private Integer hospitalType;
+	
+	private Integer hospitalRank;
+	
+	private Integer hospitalArea;
 
 	public Long getId() {
 		return id;
@@ -46,10 +52,36 @@ public class Hospital {
 	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
+	
+	public Integer getHospitalType() {
+		return hospitalType;
+	}
+
+	public void setHospitalType(Integer hospitalType) {
+		this.hospitalType = hospitalType;
+	}
+
+	public Integer getHospitalRank() {
+		return hospitalRank;
+	}
+
+	public void setHospitalRank(Integer hospitalRank) {
+		this.hospitalRank = hospitalRank;
+	}
+
+	public Integer getHospitalArea() {
+		return hospitalArea;
+	}
+
+	public void setHospitalArea(Integer hospitalArea) {
+		this.hospitalArea = hospitalArea;
+	}
 
 	@Override
 	public String toString() {
 		return "Hospital [id=" + id + ", name=" + name + ", address=" + address
-				+ ", telphone=" + telphone + "]";
+				+ ", telphone=" + telphone + ", hospitalType=" + hospitalType
+				+ ", hospitalRank=" + hospitalRank + ", hospitalArea="
+				+ hospitalArea + "]";
 	}
 }

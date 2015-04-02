@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.autoorder.dao.KeyValueMapper">
+	<resultMap type="com.autoorder.bo.KeyValue" id="keyValue">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="key_name" property="keyName" jdbcType="VARCHAR"/>
+		<result column="key_value" property="keyValue" jdbcType="VARCHAR"/>
+		<result column="key_descripe" property="keyDescripe" jdbcType="VARCHAR"/>
+		<result column="key_type" property="keyType" jdbcType="TINYINT"/>
+		<result column="is_delete" property="isDelete" jdbcType="TINYINT"/>
+	</resultMap>
+
+	<select id="queryKeyValueByKeyName" parameterType="string" resultMap="keyValue">
+		select * from keyvalue k where k.key_name = #{keyname} and k.is_delete = 0;
+	</select>
+</mapper>

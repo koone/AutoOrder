@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="java.util.HashMap" alias="hashMap"/>
 		<typeAlias type="java.lang.Long" alias="long"/>
+		<typeAlias type="java.lang.String" alias="string"/>
 	</typeAliases>
 </configuration>
