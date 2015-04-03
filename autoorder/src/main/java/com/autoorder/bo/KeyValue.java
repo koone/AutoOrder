@@ -10,12 +10,12 @@ public class KeyValue {
 	/**
 	 * keyValue为 key1:value1, key2:value2
 	 */
-	public static Integer KEY_TYPE_MAP = 1;
+	public static final Integer KEY_TYPE_MAP = 1;
 	
 	/**
 	 * keyValue为 value1, value2, value3
 	 */
-	public static Integer KEY_TYPE_LIST = 2;
+	public static final Integer KEY_TYPE_LIST = 2;
 	
 	private Long id;
 	
@@ -28,22 +28,6 @@ public class KeyValue {
 	private Integer keyType;
 	
 	private Boolean isDelete;
-
-	public static Integer getKEY_TYPE_MAP() {
-		return KEY_TYPE_MAP;
-	}
-
-	public static void setKEY_TYPE_MAP(Integer kEY_TYPE_MAP) {
-		KEY_TYPE_MAP = kEY_TYPE_MAP;
-	}
-
-	public static Integer getKEY_TYPE_LIST() {
-		return KEY_TYPE_LIST;
-	}
-
-	public static void setKEY_TYPE_LIST(Integer kEY_TYPE_LIST) {
-		KEY_TYPE_LIST = kEY_TYPE_LIST;
-	}
 
 	public Long getId() {
 		return id;

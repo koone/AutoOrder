@@ -12,12 +12,11 @@ package com.autoorder.bo;
 public class Order {
 
 	private Long id;
+
+	private String patientName;
 	
+	private String patientIDCard;
 	
-	private String userName;
-	
-	private String userIDCard;
-	
-	private String usertelphone;
+	private String patientTelphone;
 	
 }
