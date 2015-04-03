@@ -17,26 +17,28 @@
 	
 	<select id="queryHospitalByCondition" resultMap="hospital">
 		select * from hospital h where 1 = 1
-		<if test="queryBean.id != null">
-			and h.id = #{queryBean.id}
-		</if>
-		<if test="queryBean.name != null">
-			and h.name = #{queryBean.name}
-		</if>
-		<if test="queryBean.address != null">
-			and h.address = #{queryBean.address}
-		</if>
-		<if test="queryBean.telphone != null">
-			and h.telphone = #{queryBean.telphone}
-		</if>
-		<if test="queryBean.hospitalType != null">
-			and h.hospital_type = #{queryBean.hospitalType}
-		</if>
-		<if test="queryBean.hospitalRank != null">
-			and h.hospital_rank = #{queryBean.hospitalRank}
-		</if>
-		<if test="queryBean.hospitalArea != null">
-			and h.hospital_area = #{queryBean.hospitalArea}
+		<if test="queryBean != null">
+			<if test="queryBean.id != null">
+				and h.id = #{queryBean.id}
+			</if>
+			<if test="queryBean.name != null">
+				and h.name = #{queryBean.name}
+			</if>
+			<if test="queryBean.address != null">
+				and h.address = #{queryBean.address}
+			</if>
+			<if test="queryBean.telphone != null">
+				and h.telphone = #{queryBean.telphone}
+			</if>
+			<if test="queryBean.hospitalType != null">
+				and h.hospital_type = #{queryBean.hospitalType}
+			</if>
+			<if test="queryBean.hospitalRank != null">
+				and h.hospital_rank = #{queryBean.hospitalRank}
+			</if>
+			<if test="queryBean.hospitalArea != null">
+				and h.hospital_area = #{queryBean.hospitalArea}
+			</if>
 		</if>
 	</select>
 </mapper>

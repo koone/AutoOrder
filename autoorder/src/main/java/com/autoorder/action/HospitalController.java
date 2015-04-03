@@ -1,11 +1,15 @@
 package com.autoorder.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,12 +30,32 @@ public class HospitalController {
 	private KeyValueService keyValueSerivce;
 	
 	@ResponseBody
-	@RequestMapping("/id/{id}.do")
-	public Hospital queryHospital(@PathVariable("id") Long id) {
+	@RequestMapping("/query.do")
+	public List<Hospital> queryHospital(HttpServletRequest request) {
 
-		Hospital hospital = hospitalService.getHosptial(id);
+		List<Hospital> list = new ArrayList<Hospital>();
 		
-		return hospital;
+		String hospitalAreaStr = request.getParameter("hospitalArea");
+		String hospitalTypeStr = request.getParameter("hospitalType");
+		String hospitalRankStr = request.getParameter("hospitalRank");
+		
+		Hospital queryBean = new Hospital();
+		
+		if (!StringUtils.isEmpty(hospitalAreaStr)) {
+			queryBean.setHospitalType(new Integer(hospitalTypeStr));
+		}
+		
+		if (!StringUtils.isEmpty(hospitalRankStr)) {
+			queryBean.setHospitalRank(new Integer(hospitalRankStr));
+		}
+		
+		if (!StringUtils.isEmpty(hospitalTypeStr)) {
+			queryBean.setHospitalType(new Integer(hospitalTypeStr));
+		}
+		
+		list = hospitalService.queryHospitalByCondition(queryBean);
+		
+		return list; 
 	}
 	
 	@ResponseBody

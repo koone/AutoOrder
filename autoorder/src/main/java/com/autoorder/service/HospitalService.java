@@ -1,5 +1,7 @@
 package com.autoorder.service;
 
+import java.util.List;
+
 import com.autoorder.bo.Hospital;
 
 /**
@@ -15,4 +17,11 @@ public interface HospitalService {
 	 * @return
 	 */
 	public Hospital getHosptial(Long id);
+	
+	/**
+	 * 条件查询
+	 * @param queryBean
+	 * @return
+	 */
+	public List<Hospital> queryHospitalByCondition(Hospital queryBean);
 }

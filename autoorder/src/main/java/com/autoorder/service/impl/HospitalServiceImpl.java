@@ -1,5 +1,7 @@
 package com.autoorder.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,12 @@ public class HospitalServiceImpl implements HospitalService {
 		}
 		
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Hospital> queryHospitalByCondition(Hospital queryBean) {
+		return hospitalMapper.queryHospitalByCondition(queryBean);
 	}
 }
