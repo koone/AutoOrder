@@ -46,7 +46,7 @@ var user = {
 	}
 }
 
-var queryHospital = {
+var hospital = {
 	init: function() {
 		if (null == hospitalParams) {
 			main.init();
@@ -75,15 +75,60 @@ var queryHospital = {
 				jsonObj[i].hospitalArea = hospitalParams.HospitalArea[jsonObj[i].hospitalArea];
 			}
 
-			var html = template("hospitalItemList", data);
+			var html = template("hospitalItemListHtml", data);
 			$("#hospitalList").html(html);
 		}).fail(function() {
 			$("#queryHospitalButton").text("查询失败，请重试！");
 		}).always(function() {
 			$("#queryHospitalButton").removeAttr("disabled");
 		});
+	},
+	
+	getOutPatient: function(hospitalID) {
+		outPatient.init();
+		outPatient.queryOutPatient(hospitalID);
 	}
 }
+
+var outPatient = {
+	init: function() {
+		$.ajax({
+			url: serviceUrl + "/html/getOutPatient.html",
+			async: false
+		}).done(function(htmlStr) {
+			$("#mainhtml").html(htmlStr);
+		});
+	},
+
+	queryOutPatient: function(hospitalID) {
+		$.ajax({
+			url: serviceUrl + "/outPatient/queryOutPatient.do",
+			data: {
+				"hospitalID": hospitalID
+			}
+		}).done(function(jsonObj) {
+			$("#hospitalName").html(jsonObj.hospital.name);
+			$("#hospitalAddress").html(jsonObj.hospital.address);
+			$("#hospitalPhone").html(jsonObj.hospital.telphone);
+			
+			var param = jsonObj.outPatientList;
+			
+			var list = {};
+			for(var i in param) {
+				if (!list[param[i].department]) {
+					list[param[i].department] = [];
+				}
+				list[param[i].department].push(param[i])
+			}
+			
+			var data = {};
+			data["list"] = list;
+			var html = template("outPatientListHtml", data);
+			$("#outPatientList").html(html);
+		});
+	}
+}
+
 
 function genOption(map) {
 	var option = "<option value=''>请选择</option>";
@@ -92,8 +137,3 @@ function genOption(map) {
 	}
 	return option;
 }
-
-function getParameter(name) {
-    var r = new RegExp("(\\?|#|&)" + name + "=([^&#?]*)(&|#|\\?|$)"), m = location.href.match(r);
-    return decodeURIComponent(!m ? "" : m[2])
-  }

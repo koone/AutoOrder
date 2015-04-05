@@ -36,29 +36,29 @@
 		</div>
 	</div>
 	<div class="text-center">
-		<button id="queryHospitalButton" onclick="queryHospital.query();"
+		<button id="queryHospitalButton" onclick="hospital.query();"
 			type="button" class="btn btn-info">我要预约</button>
 	</div>
 </div>
 <br />
 <div>
 	<h4>
-		<strong>搜索结果</strong>
+		<strong>医院列表</strong>
 	</h4>
 	<div id="hospitalList" class="list-group"></div>
 </div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
-		queryHospital.init();
+		hospital.init();
 	});
 </script>
-<script id="hospitalItemList" type="text/html">
+<script id="hospitalItemListHtml" type="text/html">
 	{{each list as value}}
 	<div class="list-group-item ">
 		<div class="clearfix">
 			<h4 class="pull-left list-group-item-heading">{{value.name}}</h4>
-			<a class="pull-right btn btn-warning btn-xs" href="#">预约医院</a>
+			<a class="pull-right btn btn-warning btn-xs" href="javascript:void(0);" onclick="hospital.getOutPatient({{value.id}})">预约医院</a>
 		</div>
 		<span><strong>联系电话:</strong>{{value.telphone}}</span>
 		<span><strong>地址:</strong>{{value.address}}</span>

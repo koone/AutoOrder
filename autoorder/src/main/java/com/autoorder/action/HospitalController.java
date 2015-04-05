@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.autoorder.bo.Hospital;
@@ -30,27 +29,18 @@ public class HospitalController {
 	
 	@ResponseBody
 	@RequestMapping("/query.do")
-	public List<Hospital> queryHospital(HttpServletRequest request) {
+	public List<Hospital> queryHospital(
+		@RequestParam(value = "hospitalArea", required = false)Integer hospitalArea,
+		@RequestParam(value = "hospitalType", required = false)Integer hospitalType,
+		@RequestParam(value = "hospitalRank", required = false)Integer hospitalRank) {
 
 		List<Hospital> list = new ArrayList<Hospital>();
 		
-		String hospitalAreaStr = request.getParameter("hospitalArea");
-		String hospitalTypeStr = request.getParameter("hospitalType");
-		String hospitalRankStr = request.getParameter("hospitalRank");
-		
 		Hospital queryBean = new Hospital();
 		
-		if (!StringUtils.isEmpty(hospitalAreaStr)) {
-			queryBean.setHospitalType(new Integer(hospitalTypeStr));
-		}
-		
-		if (!StringUtils.isEmpty(hospitalRankStr)) {
-			queryBean.setHospitalRank(new Integer(hospitalRankStr));
-		}
-		
-		if (!StringUtils.isEmpty(hospitalTypeStr)) {
-			queryBean.setHospitalType(new Integer(hospitalTypeStr));
-		}
+		queryBean.setHospitalType(hospitalType);
+		queryBean.setHospitalRank(hospitalRank);
+		queryBean.setHospitalType(hospitalType);
 		
 		list = hospitalService.queryHospitalByCondition(queryBean);
 		

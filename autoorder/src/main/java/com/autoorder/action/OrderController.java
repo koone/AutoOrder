@@ -3,10 +3,7 @@ package com.autoorder.action;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +26,7 @@ public class OrderController {
 	 */
 	@ResponseBody
 	@RequestMapping("/commit.do")
-	public Map<String, Object> commitOrder(HttpServletRequest request) {
+	public Map<String, Object> commitOrder() {
 		
 		return null;
 	}
@@ -41,7 +38,7 @@ public class OrderController {
 	 */
 	@ResponseBody
 	@RequestMapping("/myorder.do")
-	public List<Order> getLoginUserOrder(HttpServletRequest request) {
+	public List<Order> getLoginUserOrder() {
 		
 		return null;
 	}
@@ -52,8 +49,8 @@ public class OrderController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/cancelOrder.do?orderID=${order}")
-	public Map<String, Object> cancelOrder(@PathVariable("order")Long orderID) {
+	@RequestMapping("/cancelOrder.do")
+	public Map<String, Object> cancelOrder(Long orderID) {
 		return null;
 	}
 }
