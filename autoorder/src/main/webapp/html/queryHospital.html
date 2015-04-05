@@ -1,50 +1,46 @@
 <meta charset="UTF-8" />
 <style type="text/css">
-.control-label-padding-top {
-	padding-top: 7px;
-	margin-bottom: 0;
-	text-align: right;
-}
-
-.form-group-padding-top {
-	padding-top: 20px;
-}
+	.control-label-padding-top {
+		padding-top: 7px;
+		margin-bottom: 0;
+		text-align: right;
+	}
+	.form-group-padding-top {
+		padding-top: 20px;
+	}
 </style>
 <div class="form-horizontal">
 	<div class="form-group form-group-padding-top">
-		<label class="col-xs-4 control-label control-label-padding-top"
-			for="hospitalType">医院类型</label>
+		<label class="col-xs-4 control-label control-label-padding-top" for="hospitalType">医院类型</label>
 		<div class="col-xs-8">
 			<select id="hospitalType" class="form-control">
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-xs-4 control-label control-label-padding-top"
-			for="hospitalRank">医院等级</label>
+		<label class="col-xs-4 control-label control-label-padding-top" for="hospitalRank">医院等级</label>
 		<div class="col-xs-8">
 			<select id="hospitalRank" class="form-control">
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-xs-4 control-label control-label-padding-top"
-			for="hospitalArea">医院区域</label>
+		<label class="col-xs-4 control-label control-label-padding-top" for="hospitalArea">医院区域</label>
 		<div class="col-xs-8">
 			<select id="hospitalArea" class="form-control">
 			</select>
 		</div>
 	</div>
 	<div class="text-center">
-		<button id="queryHospitalButton" onclick="hospital.query();"
-			type="button" class="btn btn-info">我要预约</button>
+		<button id="queryHospitalButton" onclick="hospital.query();" type="button" class="btn btn-info">我要预约</button>
 	</div>
 </div>
 <br />
 <div>
-	<h4>
-		<strong>医院列表</strong>
-	</h4>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="javascript:void(0);">医院列表</a>
+		</li>
+	</ul>
 	<div id="hospitalList" class="list-group"></div>
 </div>
 </div>

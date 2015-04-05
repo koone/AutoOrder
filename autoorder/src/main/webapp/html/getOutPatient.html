@@ -18,15 +18,19 @@
 	<strong>地址:</strong><span id="hospitalAddress"></span><br>
 	<abbr title="联系电话">联系电话:</abbr><span id="hospitalPhone"></span>
 </address>
-<div style="border-bottom: 1px solid #eee;">
-	<h4><strong>重要信息</strong></h4>
-</div>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="javascript:void(0);">挂号信息</a>
+	</li>
+</ul>
 <div>
 	<p><strong>退号时间:</strong>就诊前一工作日15:00前取消.</p>
 	<p><strong>取号地点:</strong>院区门诊楼一层大厅挂号窗口取号.</p>
 </div>
 <br />
-<h4><strong>选择门诊</strong></h4>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="javascript:void(0);">门诊信息</a>
+	</li>
+</ul>
 <div id="outPatientList" class="list-group">
 </div>
 
@@ -39,12 +43,13 @@
 		<div class="col-xs-6">
 			<table class="table table-condensed table-section">
 				<tr>
-				{{each value as item itemIndex}}
-						<td><a href="javascript:void(0);">{{item.outPatientName}}</a></td>
+					{{each value as item itemIndex}}
+					<td><a href="javascript:void(0);" onclick="outPatient.getDoctor({{item.id}})">{{item.outPatientName}}</a>
+					</td>
 					{{if (itemIndex + 1) % 4 == 0}}
-						</tr><tr>
-					{{/if}}
-				{{/each}}
+				</tr>
+				<tr>
+					{{/if}} {{/each}}
 				</tr>
 			</table>
 		</div>

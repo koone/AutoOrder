@@ -126,9 +126,27 @@ var outPatient = {
 			var html = template("outPatientListHtml", data);
 			$("#outPatientList").html(html);
 		});
+	},
+	
+	getDoctor: function(outPatientID) {
+		order.init();
+		order.queryDoctor(outPatientID);
 	}
 }
 
+var order = {
+	init: function() {
+		$.ajax({
+			url:serviceUrl + "/html/getDoctor.html",
+		}).done(function(htmlStr) {
+			$("#mainhtml").html(htmlStr);
+		});
+	},
+	
+	queryDoctor: function(outPatientID) {
+		
+	}
+}
 
 function genOption(map) {
 	var option = "<option value=''>请选择</option>";
