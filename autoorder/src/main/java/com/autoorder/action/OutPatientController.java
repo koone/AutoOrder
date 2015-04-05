@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -87,7 +88,6 @@ public class OutPatientController {
 		outPatient6.setOutPatientName("patient6");
 		list.add(outPatient6);
 		
-		
 		OutPatient outPatient7 = new OutPatient();
 		outPatient7.setDepartment("test1");
 		outPatient7.setHospitalID(7L);
@@ -117,15 +117,35 @@ public class OutPatientController {
 	@ResponseBody
 	@RequestMapping("/queryDoctor.do")
 	public Map<String, Object> getDoctorByPatient(
-		@RequestParam(value = "orderTime", required = false)Date orderTime,
-		@RequestParam(value = "patientID", required = false)Long patientID
+		@RequestParam(value = "orderTime", required = false)
+		@DateTimeFormat(pattern="yyyy-MM-dd")Date orderTime,
+		@RequestParam(value = "outPatientID", required = false)Long patientID
 			) {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		Hospital hospital = new Hospital();
+		hospital.setName("testHospital");
+		
 		OutPatient outPatient = new OutPatient();
+		outPatient.setDepartment("departmentID");
+		outPatient.setOutPatientName("outPatientName");
 		
 		List<Doctor> list = new ArrayList<Doctor>();
+		
+		Doctor doctor = new Doctor();
+		doctor.setDescripe("testsetsetsettsetse");
+		doctor.setDoctorName("qqqq");
+		doctor.setDoctorRank("ettwetret");
+		doctor.setRegFees(100D);
+		list.add(doctor);
+		
+		Doctor doctor1 = new Doctor();
+		doctor1.setDescripe("zxczxczxczzxc");
+		doctor1.setDoctorName("xxxx");
+		doctor1.setDoctorRank("sdfgssdf");
+		doctor1.setRegFees(1100D);
+		list.add(doctor1);
 		
 		map.put("hospital", hospital);
 		map.put("outPatient", outPatient);

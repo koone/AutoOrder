@@ -18,11 +18,10 @@ var main = {
 
 var user = {
 	login: function(baiduCode) {
-		var baiduCodeUrl = "http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=kcqb2uI1oNT330nBGEVrGZ0X&redirect_uri="
-							+ serviceUrl + "/user/baiduCode.do";
+		var baiduCodeUrl = "http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=kcqb2uI1oNT330nBGEVrGZ0X&redirect_uri=" + serviceUrl + "/user/baiduCode.do";
 		location.href = baiduCodeUrl;
 	},
-	
+
 	checkLogin: function() {
 		$.ajax({
 			url: serviceUrl + "/user/checkLogin.do",
@@ -32,16 +31,16 @@ var user = {
 				$("#userName").text(baiduUser.userName);
 			} else {
 				baiduUser = null;
-				$("#userName").text("登陆");
+				$("#userName").text("登录");
 			}
 		});
 	},
-	
+
 	myorder: function() {
 		if (null == baiduUser) {
-			this.login();	
+			this.login();
 		} else {
-			
+
 		}
 	}
 }
@@ -83,8 +82,14 @@ var hospital = {
 			$("#queryHospitalButton").removeAttr("disabled");
 		});
 	},
-	
+
 	getOutPatient: function(hospitalID) {
+		if (null == baiduUser) {
+			$("#errinfo").html("请先登录！");
+			return null;
+		}
+		
+		$("#errinfo").html("");
 		outPatient.init();
 		outPatient.queryOutPatient(hospitalID);
 	}
@@ -110,41 +115,74 @@ var outPatient = {
 			$("#hospitalName").html(jsonObj.hospital.name);
 			$("#hospitalAddress").html(jsonObj.hospital.address);
 			$("#hospitalPhone").html(jsonObj.hospital.telphone);
-			
+
 			var param = jsonObj.outPatientList;
-			
+
 			var list = {};
-			for(var i in param) {
+			for (var i in param) {
 				if (!list[param[i].department]) {
 					list[param[i].department] = [];
 				}
 				list[param[i].department].push(param[i])
 			}
-			
+
 			var data = {};
 			data["list"] = list;
 			var html = template("outPatientListHtml", data);
 			$("#outPatientList").html(html);
 		});
 	},
-	
+
 	getDoctor: function(outPatientID) {
-		order.init();
-		order.queryDoctor(outPatientID);
+		order.init(outPatientID);
 	}
 }
 
 var order = {
-	init: function() {
+	init: function(outPatientID) {
 		$.ajax({
-			url:serviceUrl + "/html/getDoctor.html",
+			url: serviceUrl + "/html/getDoctor.html",
+			async: false
 		}).done(function(htmlStr) {
 			$("#mainhtml").html(htmlStr);
+			$("#outPatientIDHidden").val(outPatientID);
+			$("#ordertime").datetimepicker({
+				format: 'yyyy-mm-dd',
+				minView: "month",
+				startView: "month",
+				maxView: "year",
+				autoclose: true
+			});
+			
+			$('#ordertime').datetimepicker().on("changeDate", function() {
+				var id = $("#outPatientIDHidden").val();
+				var time = $("#ordertime").val();
+				order.queryDoctor(id, time);
+			});
+			
+			var time = getFormatDate(new Date(), "yyyy-MM-dd");
+			$('#ordertime').datetimepicker('setStartDate', time);
+			$("#ordertime").val(time);
+			order.queryDoctor(outPatientID, time);
 		});
 	},
-	
-	queryDoctor: function(outPatientID) {
-		
+
+	queryDoctor: function(outPatientID, orderTime) {
+		$.ajax({
+			url: serviceUrl + "/outPatient/queryDoctor.do",
+			data: {
+				"outPatientID": outPatientID,
+				"orderTime": orderTime
+			}
+		}).done(function(jsonObj) {
+			var nameStr = jsonObj.hospital.name + "-" + jsonObj.outPatient.department + "-" + jsonObj.outPatient.outPatientName;
+			$("#hospitalName").html(nameStr);
+			$("#ordertime").val(orderTime);
+			$('#ordertime').datetimepicker('update');
+
+			var html = template("doctorListHtml", jsonObj);
+			$("#doctorTable").html(html);
+		});
 	}
 }
 
@@ -154,4 +192,10 @@ function genOption(map) {
 		option = option + "<option value='" + i + "'>" + map[i] + "</option>";
 	}
 	return option;
+}
+
+function getFormatDate(dateTime, formatType) {
+	if ("yyyy-MM-dd" == formatType) {
+		return dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate();
+	}
 }

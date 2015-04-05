@@ -6,14 +6,14 @@
 		text-align: right;
 	}
 </style>
-</style>
 <div class="page-header" style="margin-top: 0px;">
-	<h3 id="hospitalName">tttx-sssx-sss</h3>
+	<h3 id="hospitalName"></h3>
+	<input type="hidden" id="outPatientIDHidden" />
 </div>
 <div>
 	<label class="col-xs-4 control-label control-label-padding-top" for="ordertime">预约时间</label>
 	<div class="col-xs-8">
-		<input type="text" class="form-control form_datetime ordertime" id="ordertime" readonly="readonly">
+		<input type="text" class="form-control form_datetime" id="ordertime" readonly="readonly">
 		<br />
 	</div>
 	<table class="table-bordered table-condensed" style="width: 100%;">
@@ -26,16 +26,7 @@
 				<th class="text-center">详情</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td class="text-center">
-					<input type="radio" value="" />
-				</td>
-				<td class="text-center">主任医师</td>
-				<td class="text-center">主任医师</td>
-				<td class="text-center">8.00</td>
-				<td style="width: 50%;">从事呼吸内科20余年，在支气管哮喘、慢性阻塞性肺疾病、肺心病、呼吸衰竭、支气管扩张、慢性咳嗽等疾病诊疗方面具有丰富的临床经验。</td>
-			</tr>
+		<tbody id="doctorTable">
 		</tbody>
 	</table>
 </div>
@@ -75,4 +66,23 @@
 		</div>
 	</form>
 </div>
-</div>
+<script id="doctorListHtml" type="text/html">
+	{{if doctorList.length < 1}}
+		<tr><td colspan="5">暂无医生可选！</td></tr>	
+	{{/if}}
+	{{each doctorList as item itemIndex}}
+		<tr>
+			<td class="text-center">
+				<input id="doctorID" name="doctorID" type="radio" value="{{item.id}}"
+				{{if itemIndex == 0}}
+					checked="checked"
+				{{/if}}
+				/>
+			</td>
+			<td class="text-center">{{item.doctorName}}</td>
+			<td class="text-center">{{item.doctorRank}}</td>
+			<td class="text-center">{{item.regFees}}元</td>
+			<td style="width: 50%;">{{item.descripe}}</td>
+		</tr>
+	{{/each}}
+</script>

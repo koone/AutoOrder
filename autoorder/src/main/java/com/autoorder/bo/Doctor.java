@@ -9,6 +9,8 @@ public class Doctor {
 
 	private Long id;
 	
+	private Long outPatientID;
+	
 	private String doctorName;
 	
 	/**
@@ -37,6 +39,14 @@ public class Doctor {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getOutPatientID() {
+		return outPatientID;
+	}
+
+	public void setOutPatientID(Long outPatientID) {
+		this.outPatientID = outPatientID;
 	}
 
 	public String getDoctorName() {
