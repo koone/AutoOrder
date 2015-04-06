@@ -183,6 +183,42 @@ var order = {
 			var html = template("doctorListHtml", jsonObj);
 			$("#doctorTable").html(html);
 		});
+	},
+	
+	commitOrder: function() {
+		$.ajax({
+			url: serviceUrl + "/order/commit.do",
+			data: {
+				"orderTime": $("#ordertime").val(),
+				"doctorID": $("#doctorID").val(),
+				"patientName": $("#patientName").val(),
+				"patientIDCard": $("#patientIDCard").val(),
+				"patientTelphone": $("#patientTelphone").val(),
+				"patientHospitalCard": $("#patientHospitalCard").val()
+			}
+		}).done(function(jsonObj) {
+			if (true == jsonObj.status) {
+				this.showOrder(jsonObj.orderID);
+			};
+		});
+	},
+	
+	showOrder: function(orderID) {
+		$.ajax({
+			url: serviceUrl + "/html/showOrder.html",
+			async: false
+		}).done(function(html){
+			$("#mainhtml").html(html);
+		});
+		
+		$.ajax({
+			url:serviceUrl + "/order/queryorder.do",
+			data: {
+				"orderID" : orderID
+			}
+		}).done(function(jsonObj) {
+			
+		});
 	}
 }
 

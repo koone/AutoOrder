@@ -1,5 +1,6 @@
 package com.autoorder.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +17,17 @@ import com.autoorder.bo.Order;
  *
  */
 @Controller
-@RequestMapping(value = "/order.do", method = RequestMethod.GET)
+@RequestMapping(value = "/order", method = RequestMethod.GET)
 public class OrderController {
 
 	/**
+	 * 
+	 *	前端传参：	"orderTime": $("#ordertime").val(),
+				"doctorID": $("#doctorID").val(),
+				"patientName": $("#patientName").val(),
+				"patientIDCard": $("#patientIDCard").val(),
+				"patientTelphone": $("#patientTelphone").val(),
+				"patientHospitalCard": $("#patientHospitalCard").val() 
 	 * 提交预约单
 	 * @todo 待实现
 	 * @return 状态码
@@ -28,11 +36,32 @@ public class OrderController {
 	@RequestMapping("/commit.do")
 	public Map<String, Object> commitOrder() {
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("statue", true);
+		map.put("orderID", null);
+		
+		return map;
+	}
+	
+	/**
+	 * 前端传参："orderID" : orderID
+	 * 当前登陆用户的预约单
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryorder.do")
+	public Map<String, Object> getOrder() {
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		return null;
 	}
 	
 	/**
-	 * 取得当前登陆用户的预约单
+	 * 当前登陆用户的预约单
 	 * @param request
 	 * @return
 	 */
