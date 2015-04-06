@@ -1,3 +1,61 @@
-<meta charset="utf-8">
+<!DOCTYPE html>
+<html>
 
-there is my order!;
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../js/bootstrap-datetimepicker.min.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/artTemplate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/autoorder.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+		<title>自助挂号平台</title>
+	</head>
+
+	<body>
+		<div class="text-center" style="width: 100%;padding:10px;background-color: #00a3e7;height: 100%;">
+			<h4 style="color: white;">自助挂号
+
+				<a onclick="goHome();" class="pull-left " style="color: white;" href="javascript:void(0);">
+
+				<span class="glyphicon glyphicon-home"></span></a>
+
+				<a onclick="user.myorder();" href="javascript:void(0);" class="pull-right" style="color: white;">
+
+				<span id="userName" class="glyphicon glyphicon-user" style="font-size: 15px;"></span>
+
+				</a>
+
+			</h4>
+		</div>
+		<div id="mainhtml" class="container-fluid">
+			<div class="page-header" style="margin-top: 0px;">
+				<h3><img id="myPhoto" width="45px" height="45px"/>&nbsp;&nbsp;<span id="myName">teste</span></h3>
+			</div>
+
+			<div id="orderList">
+				<div class="panel panel-primary" style="margin-top: 15px;">
+					<div class="panel-heading"><span id="orderID"></span>#&nbsp;&nbsp;<span id="orderHospital"></span>
+					</div>
+					<div class="panel-body">
+						<p><strong>预约门诊:</strong><span id="orderOutpatient"></span>
+						</p>
+						<p><strong>预约医生:</strong><span id="orderDoctor"></span>
+						</p>
+						<p><strong>挂号费:</strong><span id="orderFees"></span>
+						</p>
+						<p><strong>就诊时间:</strong><span id="orderTime"></span>
+						</p>
+						<p><strong>就诊人:</strong><span id="patientName"></span>
+						</p>
+						<p><strong>医保卡号:</strong><span id="patientHospitalCard"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

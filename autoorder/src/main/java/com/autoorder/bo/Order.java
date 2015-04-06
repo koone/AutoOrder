@@ -3,6 +3,8 @@
  */
 package com.autoorder.bo;
 
+import java.util.Date;
+
 /**
  * 
  * 预约单
@@ -26,6 +28,10 @@ public class Order {
 	private Long outPatientID;
 	
 	private Long doctorID;
+	
+	private Double regFees;
+	
+	private Date orderTime;
 
 	public Long getId() {
 		return id;
