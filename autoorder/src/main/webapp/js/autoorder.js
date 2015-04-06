@@ -84,12 +84,12 @@ var hospital = {
 	},
 
 	getOutPatient: function(hospitalID) {
-		if (null == baiduUser) {
-			$("#errinfo").html("请先登录！");
-			return null;
-		}
-		
-		$("#errinfo").html("");
+//		if (null == baiduUser) {
+//			$("#errinfo").html("请先登录！");
+//			return null;
+//		}
+//		
+//		$("#errinfo").html("");
 		outPatient.init();
 		outPatient.queryOutPatient(hospitalID);
 	}

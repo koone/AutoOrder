@@ -21,4 +21,9 @@ public class Order {
 	
 	private String patientHospitalCard;
 	
+	private Long hospitalID;
+	
+	private Long outPatientID;
+	
+	private Long doctorID;
 }
