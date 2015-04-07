@@ -19,6 +19,7 @@ import com.autoorder.bo.Doctor;
 import com.autoorder.bo.Hospital;
 import com.autoorder.bo.OutPatient;
 import com.autoorder.service.HospitalService;
+import com.autoorder.service.OutPatientService;
 
 /**
  * @autor Seaven
@@ -31,10 +32,12 @@ public class OutPatientController {
 
 	@Resource(name = "hospitalService")
 	private HospitalService hospitalService;
+
+	@Resource(name = "outPatientService")
+	private OutPatientService outPatientService;
 	
 	/**
 	 * 查询医院门诊
-	 * @todo 待实现
 	 */
 	@ResponseBody
 	@RequestMapping("/queryOutPatient.do")
@@ -43,64 +46,8 @@ public class OutPatientController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<OutPatient> list = new ArrayList<OutPatient>();
-		Hospital hospital = hospitalService.getHosptial(1L);
-		
-		OutPatient outPatient1 = new OutPatient();
-		outPatient1.setDepartment("test");
-		outPatient1.setHospitalID(1L);
-		outPatient1.setId(1L);
-		outPatient1.setOutPatientName("patient8");
-		list.add(outPatient1);
-	
-		OutPatient outPatient2 = new OutPatient();
-		outPatient2.setDepartment("test");
-		outPatient2.setHospitalID(8L);
-		outPatient2.setId(2L);
-		outPatient2.setOutPatientName("patient2");
-		list.add(outPatient2);
-		
-		OutPatient outPatient3 = new OutPatient();
-		outPatient3.setDepartment("test");
-		outPatient3.setHospitalID(8L);
-		outPatient3.setId(3L);
-		outPatient3.setOutPatientName("patient3");
-		list.add(outPatient3);
-		
-		OutPatient outPatient4 = new OutPatient();
-		outPatient4.setDepartment("test1");
-		outPatient4.setHospitalID(8L);
-		outPatient4.setId(4L);
-		outPatient4.setOutPatientName("patient4");
-		list.add(outPatient4);
-		
-		OutPatient outPatient5 = new OutPatient();
-		outPatient5.setDepartment("test2");
-		outPatient5.setHospitalID(8L);
-		outPatient5.setId(5L);
-		outPatient5.setOutPatientName("patient5");
-		list.add(outPatient5);
-		
-		OutPatient outPatient6 = new OutPatient();
-		outPatient6.setDepartment("test1");
-		outPatient6.setHospitalID(6L);
-		outPatient6.setId(6L);
-		outPatient6.setOutPatientName("patient6");
-		list.add(outPatient6);
-		
-		OutPatient outPatient7 = new OutPatient();
-		outPatient7.setDepartment("test1");
-		outPatient7.setHospitalID(7L);
-		outPatient7.setId(7L);
-		outPatient7.setOutPatientName("patient7");
-		list.add(outPatient7);
-		
-		OutPatient outPatient8 = new OutPatient();
-		outPatient8.setDepartment("test1");
-		outPatient8.setHospitalID(8L);
-		outPatient8.setId(8L);
-		outPatient8.setOutPatientName("patient8");
-		list.add(outPatient8);
+		List<OutPatient> list = outPatientService.getOutPatientByHospital(hospitalId);
+		Hospital hospital = hospitalService.getHosptial(hospitalId);
 		
 		map.put("outPatientList", list);
 		map.put("hospital", hospital);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.autoorder.dao.OutPatientMapper">
+	<resultMap type="com.autoorder.bo.outPatient" id="outPatient">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="hospital_id" property="hospitalID" jdbcType="INTEGER" />
+		<result column="department" property="department" jdbcType="VARCHAR"/>
+		<result column="outPatientName" property="outpatient_name" jdbcType="VARCHAR"/>
+ 	</resultMap>
+ 	
+ 	<select id="queryOutPatientByID" parameterType="long" resultMap="outPatient">
+ 		select * from outpatient o where o.id = #{id}
+ 	</select>
+ 	
+ 	<select id="queryOutPatientByHospitalID" parameterType="long" resultMap="outPatient">
+ 		select * from outpatient o where o.hospital_id = #{hospitalID}
+ 	</select>
+</mapper>
