@@ -1,4 +1,4 @@
-var serviceUrl = "http://autoorder.baidu.com:8080/autoorder";
+var serviceUrl = "..";
 var baiduPhotoUrl = "http://tb.himg.baidu.com/sys/portraitn/item/";
 
 var hospitalParams = null;
@@ -18,8 +18,9 @@ var main = {
 
 var user = {
 	login: function(baiduCode) {
-		var baiduCodeUrl = "http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=kcqb2uI1oNT330nBGEVrGZ0X&redirect_uri=" + serviceUrl + "/user/baiduCode.do";
-		location.href = baiduCodeUrl;
+		var baiduCodeUrl = "http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=kcqb2uI1oNT330nBGEVrGZ0X&redirect_uri=";
+		var callbackUrl = "http://" + location.host + "/user/baiduCode.do";
+		location.href = baiduCodeUrl + callbackUrl + "?locationUrl=" + "http://" + location.host;
 	},
 
 	checkLogin: function() {

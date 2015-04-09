@@ -34,7 +34,7 @@ public class BaiduAuthUtils {
 	
 	private static final String CLIENT_SECRET = "aOhiWzOlkW8GbvAwQBpsvzG8pcKR1O9F";
 	
-	private static final String REDIRECT_URI = "http://autoorder.baidu.com:8080/autoorder/user/login.do";
+	public static String REDIRECT_URI = "";
 	
 	/**
 	 * 取得baidu token

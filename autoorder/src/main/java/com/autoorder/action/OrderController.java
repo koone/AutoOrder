@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.autoorder.bo.Order;
+import com.autoorder.bo.Orders;
 
 /**
  * @autor Seaven
@@ -67,7 +67,7 @@ public class OrderController {
 	 */
 	@ResponseBody
 	@RequestMapping("/myorder.do")
-	public List<Order> getLoginUserOrder() {
+	public List<Orders> getLoginUserOrder() {
 		
 		return null;
 	}

@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Seaven
  *
  */
-public class Order {
+public class Orders {
 
 	private Long id;
 
@@ -33,6 +33,8 @@ public class Order {
 	
 	private Date orderTime;
 
+	private Long operatorBaiduID;
+	
 	public Long getId() {
 		return id;
 	}
@@ -95,5 +97,29 @@ public class Order {
 
 	public void setDoctorID(Long doctorID) {
 		this.doctorID = doctorID;
+	}
+
+	public Double getRegFees() {
+		return regFees;
+	}
+
+	public void setRegFees(Double regFees) {
+		this.regFees = regFees;
+	}
+
+	public Date getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(Date orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public Long getOperatorBaiduID() {
+		return operatorBaiduID;
+	}
+
+	public void setOperatorBaiduID(Long operatorBaiduID) {
+		this.operatorBaiduID = operatorBaiduID;
 	}
 }

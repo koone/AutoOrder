@@ -43,6 +43,8 @@ public class UesrController {
 	@ResponseBody
 	@RequestMapping("/baiduCode.do")
 	public void getBaiduCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String  locationUrl = request.getParameter("locationUrl");
+		BaiduAuthUtils.REDIRECT_URI = locationUrl + "/user/login.do";
 		
 		authUtils.getBaiDuCode(request, response);
 	}
@@ -113,6 +115,10 @@ public class UesrController {
 	 */
 	private Cookie getBaiduCookie(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
+		
+		if (null == cookies) {
+			return null;
+		}
 
 		for (Cookie cookie : cookies) {
 			if (BAIDU_COOKIE_UID.equals(cookie.getName())) {
