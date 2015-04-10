@@ -1,5 +1,6 @@
 package com.autoorder.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.autoorder.bo.Doctor;
@@ -13,5 +14,5 @@ public interface DoctorService {
 	
 	public Doctor queryDoctorByID(Long id);
 	
-	public List<Doctor> queryDoctorByOutPatientID(Long outPatientID, Integer regCount);
+	public List<Doctor> getAvaibleDoctorByOutPatientID(Long outPatientID, Date orderTime);
 }

@@ -15,6 +15,6 @@ public interface DoctorMapper {
 	
 	public Doctor queryDoctorByID(Long id);
 	
-	public List<Doctor> queryDoctorByOutPatientID(@Param("outPatientID")Long outPatientID, @Param("regCount")Integer regCount);
+	public List<Doctor> queryDoctorByOutPatientID(@Param("outPatientID")Long outPatientID);
 
 }

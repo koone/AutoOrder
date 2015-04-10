@@ -1,6 +1,5 @@
 package com.autoorder.action;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.autoorder.bo.Doctor;
 import com.autoorder.bo.Hospital;
 import com.autoorder.bo.OutPatient;
+import com.autoorder.service.DoctorService;
 import com.autoorder.service.HospitalService;
 import com.autoorder.service.OutPatientService;
 
@@ -35,6 +35,9 @@ public class OutPatientController {
 
 	@Resource(name = "outPatientService")
 	private OutPatientService outPatientService;
+	
+	@Resource(name = "doctorService")
+	private DoctorService doctorService;
 	
 	/**
 	 * 查询医院门诊
@@ -70,29 +73,10 @@ public class OutPatientController {
 			) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		Hospital hospital = new Hospital();
-		hospital.setName("testHospital");
-		
-		OutPatient outPatient = new OutPatient();
-		outPatient.setDepartment("departmentID");
-		outPatient.setOutPatientName("outPatientName");
-		
-		List<Doctor> list = new ArrayList<Doctor>();
-		
-		Doctor doctor = new Doctor();
-		doctor.setDescripe("testsetsetsettsetse");
-		doctor.setDoctorName("qqqq");
-		doctor.setDoctorRank("ettwetret");
-		doctor.setRegFees(100D);
-		list.add(doctor);
-		
-		Doctor doctor1 = new Doctor();
-		doctor1.setDescripe("zxczxczxczzxc");
-		doctor1.setDoctorName("xxxx");
-		doctor1.setDoctorRank("sdfgssdf");
-		doctor1.setRegFees(1100D);
-		list.add(doctor1);
+		OutPatient outPatient = outPatientService.getOutPatientByID(patientID);
+		Hospital hospital = hospitalService.getHosptial(outPatient.getHospitalID());
+
+		List<Doctor> list = doctorService.getAvaibleDoctorByOutPatientID(patientID, orderTime);
 		
 		map.put("hospital", hospital);
 		map.put("outPatient", outPatient);

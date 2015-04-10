@@ -1,6 +1,7 @@
 package com.autoorder.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.autoorder.bo.Doctor;
 import com.autoorder.dao.DoctorMapper;
+import com.autoorder.dao.OrdersMapper;
 import com.autoorder.service.DoctorService;
 
 /**
@@ -21,6 +23,9 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	private DoctorMapper doctorMapper;
 	
+	@Autowired
+	private OrdersMapper ordersMapper;
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -32,15 +37,22 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 *{@inheritDoc}
 	 */
-	public List<Doctor> queryDoctorByOutPatientID(Long outPatientID,
-			Integer regCount) {
+	public List<Doctor> getAvaibleDoctorByOutPatientID(Long outPatientID, Date orderTime) {
+		// TODO Auto-generated method stub
 		
-		if (null != outPatientID) {
-			return doctorMapper.queryDoctorByOutPatientID(outPatientID, regCount);
+		List<Doctor> list = doctorMapper.queryDoctorByOutPatientID(outPatientID);
+		List<Doctor> result = new ArrayList<Doctor>();
+		for (Doctor doctor : list) {
+			Long regCount = ordersMapper.countOrdersByDoctorID(doctor.getId(), orderTime);
+			
+			if (regCount < doctor.getRegCount()) {
+				result.add(doctor);
+			}
 		}
-		return new ArrayList<Doctor>();
+		
+		return result;
 	}
 
 }

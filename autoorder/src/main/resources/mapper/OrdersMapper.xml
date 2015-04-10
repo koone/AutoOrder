@@ -22,4 +22,8 @@
  	<select id="queryOrdersByBaiduUid" parameterType="long" resultMap="orders">
  		select * from orders o where o.operator_baiduid = #{operatorBaiduID}
  	</select>
+ 	
+ 	<select id="countOrdersByDoctorID" resultType="long">
+ 	    select count(*) from orders o where o.doctor_id = #{doctorID} and o.order_time = #{orderTime}
+ 	</select>
 </mapper>

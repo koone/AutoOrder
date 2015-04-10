@@ -17,7 +17,7 @@
 
 	<select id="queryDoctorByOutPatientID" resultMap="doctor">
 		<![CDATA[
-		select * from doctor d where d.outpatient_id = #{outPatientID} and d.reg_count < #{regCount}
+		select * from doctor d where d.outpatient_id = #{outPatientID} 
 		]]>
 	</select>
 </mapper>
